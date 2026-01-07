@@ -13,9 +13,22 @@ function App() {
 
     const Concatenation = [...lowercase, ...uppercase, ...numbers, ...symbols];
 
-    let GeneratePassword = Math.random() * Concatenation.length;
+    const GetUpdatePassword = [];
 
-    setPassword(Concatenation[Math.floor(GeneratePassword)]);
+    for (let i = 0; i <= 12; i++) {
+      let RandomNumber = Math.random() * Concatenation.length;
+      let pass = Concatenation[Math.floor(RandomNumber)];
+
+      GetUpdatePassword.push(pass);
+    }
+
+    setPassword(GetUpdatePassword);
+  }
+
+  function handleCopy(e) {
+    e.preventDefault();
+
+    alert("The Text Hasbeen Succesfully Copied");
   }
 
   return (
@@ -29,15 +42,15 @@ function App() {
         <section>
           <h2>Generate a Password</h2>
 
-          <form onSubmit={handleform}>
-            <button>Generate Password</button>
+          <form>
+            <button onClick={handleform}>Generate Password</button>
             <input
               type="text"
-              value={password}
+              value={password.join("")}
               disabled
               placeholder="Generate Password"
             />
-            <button>✉️</button>
+            <button onClick={handleCopy}>✉️</button>
           </form>
         </section>
       </main>
